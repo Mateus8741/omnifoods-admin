@@ -7,7 +7,7 @@
 .yarn/install-state.gz
 
 
-yarn-lock.json
+yarn.lock
 package-lock.json
 
 # testing

@@ -16,5 +16,6 @@ export const colors = {
 
   red: {
     line: '#B70F0F',
+    danger: '#FF3D00',
   },
 }
