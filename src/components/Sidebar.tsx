@@ -2,8 +2,7 @@
 
 import { colors } from '@/theme/colors'
 import { CreditCard, Home, LogOut, Settings } from 'lucide-react'
-import Link from 'next/link'
-import { Command, CommandGroup, CommandItem, CommandList } from './command'
+import { MenuItems } from './menuItems'
 import { UserItem } from './userItem'
 
 export function Sidebar() {
@@ -27,7 +26,7 @@ export function Sidebar() {
       group: 'Settings',
       items: [
         {
-          link: '/',
+          link: '/Settings',
           icon: <Settings />,
           text: 'General Settings',
         },
@@ -42,22 +41,9 @@ export function Sidebar() {
       </div>
 
       <div className="grow">
-        <Command style={{ overflow: 'visible' }}>
-          <CommandList style={{ overflow: 'visible' }}>
-            {menuList.map((menu, key: number) => (
-              <CommandGroup key={key} heading={menu.group}>
-                {menu.items.map((option, optionKey: number) => (
-                  <Link href={option.link} key={optionKey} className="flex">
-                    <CommandItem className="gap-2">
-                      {option.icon}
-                      {option.text}
-                    </CommandItem>
-                  </Link>
-                ))}
-              </CommandGroup>
-            ))}
-          </CommandList>
-        </Command>
+        {menuList.map((group, index) => (
+          <MenuItems key={index} group={group} />
+        ))}
       </div>
 
       <div>
