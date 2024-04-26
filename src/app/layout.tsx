@@ -1,4 +1,4 @@
-import { Nav } from '@/components/Nav'
+import { Sidebar } from '@/components/Sidebar'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -17,8 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Nav />
+      <body className={`${inter.className} grid grid-cols-[15rem,1fr] bg-bg`}>
+        <Sidebar />
         {children}
       </body>
     </html>

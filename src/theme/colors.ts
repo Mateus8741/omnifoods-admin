@@ -1,4 +1,7 @@
 export const colors = {
+  white: '#FFFFFF',
+  black: '#000000',
+
   bg: '#151518',
 
   gray: {
@@ -14,4 +17,4 @@ export const colors = {
   red: {
     line: '#B70F0F',
   },
-};
+}
