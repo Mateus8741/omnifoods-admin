@@ -1,7 +1,7 @@
 'use client'
 
 import { colors } from '@/theme/colors'
-import { BellIcon, CreditCard, LogOut, Settings, User } from 'lucide-react'
+import { CreditCard, Home, LogOut, Settings } from 'lucide-react'
 import Link from 'next/link'
 import { Command, CommandGroup, CommandItem, CommandList } from './command'
 import { UserItem } from './userItem'
@@ -13,18 +13,13 @@ export function Sidebar() {
       items: [
         {
           link: '/',
-          icon: <User />,
-          text: 'Profile',
+          icon: <Home />,
+          text: 'Home',
         },
         {
           link: '/Billing',
           icon: <CreditCard />,
-          text: 'Billing',
-        },
-        {
-          link: '/',
-          icon: <BellIcon />,
-          text: 'Notifications',
+          text: 'Pagamentos',
         },
       ],
     },
