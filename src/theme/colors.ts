@@ -2,7 +2,7 @@ export const colors = {
   white: '#FFFFFF',
   black: '#000000',
 
-  bg: '#151518',
+  bg: '#121214',
 
   gray: {
     subtitle: '#7F7F81',
