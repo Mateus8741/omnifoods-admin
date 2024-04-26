@@ -52,12 +52,7 @@ export function Sidebar() {
             {menuList.map((menu, key: number) => (
               <CommandGroup key={key} heading={menu.group}>
                 {menu.items.map((option, optionKey: number) => (
-                  <Link
-                    href={option.link}
-                    key={optionKey}
-                    className="flex"
-                    // onClick={() => console.log(option.text)}
-                  >
+                  <Link href={option.link} key={optionKey} className="flex">
                     <CommandItem className="gap-2">
                       {option.icon}
                       {option.text}
