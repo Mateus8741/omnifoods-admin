@@ -6,12 +6,16 @@ export function CardOrders(order: Order) {
     <div className="flex flex-col items-center justify-center w-full p-4">
       <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg border border-bg mt-4">
         <div className="flex flex-row items-center justify-between w-full">
-          <h2 className="text-xl font-bold text-gray-1000">
-            Mesa {order.tableNumber}
+          <h2 className="text-xl text-gray-1000">
+            Mesa:{' '}
+            <span className="font-bold uppercase">{order.tableNumber}</span>
           </h2>
 
           <p className="text-gray-1000">
-            Hora do pedido: {formatDate(order.createdAt ?? '')}
+            Hora do pedido:{' '}
+            <span className="font-bold uppercase">
+              {formatDate(order.createdAt ?? '')}
+            </span>
           </p>
         </div>
 
