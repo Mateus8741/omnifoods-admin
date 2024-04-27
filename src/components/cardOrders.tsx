@@ -1,12 +1,19 @@
 import { Order } from '@/schemas/orderSchema'
+import { formatDate } from '@/utils/formateDate'
 
 export function CardOrders(order: Order) {
   return (
     <div className="flex flex-col items-center justify-center w-full p-4">
       <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg border border-bg mt-4">
-        <h2 className="text-xl font-bold text-gray-1000">
-          Mesa {order.tableNumber}
-        </h2>
+        <div className="flex flex-row items-center justify-between w-full">
+          <h2 className="text-xl font-bold text-gray-1000">
+            Mesa {order.tableNumber}
+          </h2>
+
+          <p className="text-gray-1000">
+            Hora do pedido: {formatDate(order.createdAt ?? '')}
+          </p>
+        </div>
 
         {order.productOrders.map((product) => (
           <div
@@ -17,9 +24,15 @@ export function CardOrders(order: Order) {
               {product.productName}
             </h3>
             <p className="text-gray-1000">Quantidade: {product.quantity}</p>
-            <p className="text-gray-1000">Preço: R$ {product.productPrice}</p>
           </div>
         ))}
+
+        {order.changeToOrder && (
+          <p className="text-gray-1000 mt-3">
+            Observações:{' '}
+            <span className="font-bold uppercase">{order.changeToOrder}</span>
+          </p>
+        )}
       </div>
     </div>
   )
