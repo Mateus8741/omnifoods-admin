@@ -1,0 +1,21 @@
+export const colors = {
+  white: '#FFFFFF',
+  black: '#000000',
+
+  bg: '#121214',
+
+  gray: {
+    subtitle: '#7F7F81',
+    light: '#434345',
+    1000: '#26262D',
+  },
+
+  green: {
+    success: '#00C853',
+  },
+
+  red: {
+    line: '#B70F0F',
+    danger: '#FF3D00',
+  },
+}
