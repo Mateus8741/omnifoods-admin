@@ -1,15 +1,15 @@
 interface ProductOrder {
-  id: string
+  id?: string
   productName: string
   productPrice: number
   quantity: number
-  orderId: string
+  orderId?: string
 }
 
 export interface Order {
-  id: string
+  id?: string
   tableNumber: number
-  changeToOrder: string
-  createdAt: string
+  changeToOrder?: string
+  createdAt?: string
   productOrders: ProductOrder[]
 }
