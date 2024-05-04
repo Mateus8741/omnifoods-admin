@@ -1,7 +1,7 @@
 'use client'
 
 import { colors } from '@/theme/colors'
-import { CreditCard, Home, LogOut, Settings } from 'lucide-react'
+import { CreditCard, Home, LogOut, Settings, ShoppingBag } from 'lucide-react'
 import { MenuItems } from './menuItems'
 import { UserItem } from './userItem'
 
@@ -14,6 +14,11 @@ export function Sidebar() {
           link: '/',
           icon: <Home />,
           text: 'Home',
+        },
+        {
+          link: '/Products',
+          icon: <ShoppingBag />,
+          text: 'Produtos',
         },
         {
           link: '/Billing',
