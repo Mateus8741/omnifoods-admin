@@ -15,7 +15,7 @@ export function InputField({
 }: InputFieldProps) {
   return (
     <div className="flex flex-col gap-2 mb-3">
-      <label className="block mb-2 text-xs font-bold uppercase" htmlFor={name}>
+      <label className="block text-xs font-bold uppercase" htmlFor={name}>
         {label}
       </label>
       <input
@@ -26,7 +26,7 @@ export function InputField({
       />
 
       {errorMessages && (
-        <span className="text-xs text-red-500">{errorMessages}</span>
+        <span className="text-xs text-red-danger">{errorMessages}</span>
       )}
     </div>
   )
