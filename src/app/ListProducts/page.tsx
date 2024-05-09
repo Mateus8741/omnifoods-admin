@@ -7,7 +7,7 @@ export default function ListProducts() {
   const { data, error, isLoading } = useListProducts()
 
   return (
-    <div className="w-full h-full flex flex-col justify-center">
+    <div className="flex flex-col justify-center">
       <h2 className="mb-12 text-2xl">Produtos listados</h2>
 
       <div className="">

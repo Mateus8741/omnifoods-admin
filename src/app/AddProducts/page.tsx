@@ -25,7 +25,7 @@ export default function CreateProduct() {
           name: data.name,
           price: Number(data.price),
           description: data.description,
-          ingredients: data.ingredients,
+          ingredients: data.ingredients ?? '',
           thumbnail,
           cover,
         },
@@ -35,13 +35,13 @@ export default function CreateProduct() {
     mutate(productData)
   }
 
-  if (isSuccess) {
-    reset()
-    setThumbnail('')
-    setCover('')
+  // if (isSuccess) {
+  //   reset()
+  //   setThumbnail('')
+  //   setCover('')
 
-    alert('Produto criado com sucesso!')
-  }
+  //   alert('Produto criado com sucesso!')
+  // }
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -130,6 +130,7 @@ export default function CreateProduct() {
           className="bg-gray-light text-white rounded-md p-2 w-1/2 self-center"
           onClick={handleSubmit(onSubmit)}
           disabled={isPending}
+          // loading={isPending}
         >
           Salvar
         </button>

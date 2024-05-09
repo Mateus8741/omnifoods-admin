@@ -18,14 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} grid grid-cols-[16rem,1fr] bg-white`}
-      >
+      <body className={`${inter.className} bg-white`}>
         <Provider>
-          <Sidebar />
-          <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            {children}
-          </main>
+          <div className="grid grid-cols-[16rem,1fr] h-screen">
+            <Sidebar />
+            <main className="overflow-y-auto p-6">{children}</main>
+          </div>
         </Provider>
       </body>
     </html>

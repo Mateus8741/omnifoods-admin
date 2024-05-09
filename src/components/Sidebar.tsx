@@ -53,7 +53,7 @@ export function Sidebar() {
   ]
 
   return (
-    <div className="flex flex-col gap-3 w-[16rem] min-h-screen p-4 shadow-lg shadow-bg/30">
+    <aside className="flex flex-col gap-3 w-[16rem] min-h-screen p-4 shadow-lg shadow-bg/30">
       <div>
         <UserItem />
       </div>
@@ -73,6 +73,6 @@ export function Sidebar() {
           Logout
         </button>
       </div>
-    </div>
+    </aside>
   )
 }
