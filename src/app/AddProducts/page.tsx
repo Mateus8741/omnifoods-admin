@@ -33,14 +33,14 @@ export default function CreateProduct() {
     }
 
     mutate(productData)
+  }
 
-    if (isSuccess) {
-      reset()
-      setThumbnail('')
-      setCover('')
+  if (isSuccess) {
+    reset()
+    setThumbnail('')
+    setCover('')
 
-      alert('Produto criado com sucesso!')
-    }
+    alert('Produto criado com sucesso!')
   }
 
   return (

@@ -23,9 +23,9 @@ export function Sidebar() {
           text: 'Home',
         },
         {
-          link: '/Products',
+          link: '/AddProducts',
           icon: <ShoppingBag />,
-          text: 'Produtos',
+          text: 'Adicionar Produtos',
         },
         {
           link: '/ListProducts',
