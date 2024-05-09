@@ -1,5 +1,6 @@
 'use client'
 
+import { useCreateProduct } from '@/api/useCases/useCreateproduct'
 import { FormTextArea } from '@/components/Form/formTextArea'
 import { FormTextInput } from '@/components/Form/formTextInput'
 import { CreateProductSchema } from '@/schemas/createProductSchema'
@@ -12,15 +13,34 @@ export default function Products() {
   const [thumbnail, setThumbnail] = useState('')
   const [cover, setCover] = useState('')
 
-  const { control, handleSubmit } = useForm<CreateProductSchema>()
+  const { mutate, isPending, isSuccess } = useCreateProduct()
+
+  const { control, handleSubmit, reset } = useForm<CreateProductSchema>()
 
   function onSubmit(data: CreateProductSchema) {
-    console.log('Data: ', {
-      ...data,
-      price: Number(data.price),
-      thumbnail,
-      cover,
-    })
+    const productData = {
+      title: data.title,
+      details: [
+        {
+          name: data.name,
+          price: Number(data.price),
+          description: data.description,
+          ingredients: data.ingredients,
+          thumbnail,
+          cover,
+        },
+      ],
+    }
+
+    mutate(productData)
+
+    if (isSuccess) {
+      reset()
+      setThumbnail('')
+      setCover('')
+
+      alert('Produto criado com sucesso!')
+    }
   }
 
   return (
@@ -36,6 +56,11 @@ export default function Products() {
 
             <FormTextInput control={control} name="name" label="Nome" />
             <FormTextInput control={control} name="price" label="Preço" />
+            <FormTextInput
+              control={control}
+              name="ingredients"
+              label="Ingredientes"
+            />
             <FormTextArea
               control={control}
               name="description"
@@ -104,6 +129,7 @@ export default function Products() {
           type="submit"
           className="bg-gray-light text-white rounded-md p-2 w-1/2 self-center"
           onClick={handleSubmit(onSubmit)}
+          disabled={isPending}
         >
           Salvar
         </button>
