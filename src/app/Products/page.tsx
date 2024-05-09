@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-export default function Products() {
+export default function CreateProduct() {
   const [thumbnail, setThumbnail] = useState('')
   const [cover, setCover] = useState('')
 

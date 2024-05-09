@@ -1,14 +1,21 @@
 'use client'
 
 import { colors } from '@/theme/colors'
-import { CreditCard, Home, LogOut, Settings, ShoppingBag } from 'lucide-react'
+import {
+  CreditCard,
+  Home,
+  List,
+  LogOut,
+  Settings,
+  ShoppingBag,
+} from 'lucide-react'
 import { MenuItems } from './menuItems'
 import { UserItem } from './userItem'
 
 export function Sidebar() {
   const menuList = [
     {
-      group: 'General',
+      group: 'Geral',
       items: [
         {
           link: '/',
@@ -19,6 +26,11 @@ export function Sidebar() {
           link: '/Products',
           icon: <ShoppingBag />,
           text: 'Produtos',
+        },
+        {
+          link: '/ListProducts',
+          icon: <List />,
+          text: 'Produtos Adicionados',
         },
         {
           link: '/Billing',
