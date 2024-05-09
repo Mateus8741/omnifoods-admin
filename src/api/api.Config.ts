@@ -8,3 +8,7 @@ const api = axios.create({
 export function getOrders() {
   return api.get<Order[]>('/list-all-orders')
 }
+
+export function createProduct(data: unknown) {
+  return api.post('/product', data)
+}
