@@ -3,6 +3,7 @@
 import { useCreateProduct } from '@/api/useCases/useCreateproduct'
 import { FormTextArea } from '@/components/Form/formTextArea'
 import { FormTextInput } from '@/components/Form/formTextInput'
+import { CustomButton } from '@/components/customButton'
 import { CreateProductSchema } from '@/schemas/createProductSchema'
 import { UploadButton } from '@/utils/uploadthings'
 import Image from 'next/image'
@@ -13,9 +14,19 @@ export default function CreateProduct() {
   const [thumbnail, setThumbnail] = useState('')
   const [cover, setCover] = useState('')
 
-  const { mutate, isPending, isSuccess } = useCreateProduct()
+  const { mutate, isPending } = useCreateProduct()
 
-  const { control, handleSubmit, reset } = useForm<CreateProductSchema>()
+  const { control, handleSubmit, reset } = useForm<CreateProductSchema>({
+    defaultValues: {
+      title: '',
+      name: '',
+      price: 0,
+      description: '',
+      ingredients: '',
+    },
+
+    mode: 'onChange',
+  })
 
   function onSubmit(data: CreateProductSchema) {
     const productData = {
@@ -33,15 +44,10 @@ export default function CreateProduct() {
     }
 
     mutate(productData)
+    reset()
+    setThumbnail('')
+    setCover('')
   }
-
-  // if (isSuccess) {
-  //   reset()
-  //   setThumbnail('')
-  //   setCover('')
-
-  //   alert('Produto criado com sucesso!')
-  // }
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -125,15 +131,11 @@ export default function CreateProduct() {
           </div>
         </div>
 
-        <button
-          type="submit"
-          className="bg-gray-light text-white rounded-md p-2 w-1/2 self-center"
-          onClick={handleSubmit(onSubmit)}
+        <CustomButton
+          title="Salvar"
           disabled={isPending}
-          // loading={isPending}
-        >
-          Salvar
-        </button>
+          onClick={handleSubmit(onSubmit)}
+        />
       </form>
     </div>
   )

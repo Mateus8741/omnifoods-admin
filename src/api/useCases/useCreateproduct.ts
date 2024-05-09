@@ -8,7 +8,7 @@ export function useCreateProduct() {
       console.log('Creating product...')
     },
     onSuccess: () => {
-      console.log('Product created!')
+      alert('Produto criado!')
     },
   })
 
