@@ -1,17 +1,22 @@
+'use client'
+
+import { useListProducts } from '@/api/useCases/useListProducts'
+import { ProductCard } from '@/components/productCard'
+
 export default function ListProducts() {
-  // const { data, isLoading, isError } = useListProducts()
+  const { data, error, isLoading } = useListProducts()
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="w-1/2">
-        <h2 className="mb-4 text-2xl">Produtos</h2>
+    <div className="w-full h-full flex flex-col justify-center">
+      <h2 className="mb-12 text-2xl">Produtos listados</h2>
 
-        {/* {isLoading && <p>Carregando...</p>}
-            {isError && <p>Erro ao carregar produtos</p>}
-    
-            {data?.map((product) => (
-            <ProductCard key={product.id} product={product} />
-            ))} */}
+      <div className="">
+        {isLoading && <p>Carregando...</p>}
+        {error && <p>Erro ao carregar produtos</p>}
+
+        {data?.data?.map((product) => (
+          <ProductCard key={product.id} {...product} />
+        ))}
       </div>
     </div>
   )
