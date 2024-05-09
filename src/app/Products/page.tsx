@@ -1,11 +1,27 @@
 'use client'
 
+import { FormTextArea } from '@/components/Form/formTextArea'
 import { FormTextInput } from '@/components/Form/formTextInput'
+import { CreateProductSchema } from '@/schemas/createProductSchema'
 import { UploadButton } from '@/utils/uploadthings'
+import Image from 'next/image'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 export default function Products() {
-  const { control } = useForm()
+  const [thumbnail, setThumbnail] = useState('')
+  const [cover, setCover] = useState('')
+
+  const { control, handleSubmit } = useForm<CreateProductSchema>()
+
+  function onSubmit(data: CreateProductSchema) {
+    console.log('Data: ', {
+      ...data,
+      price: Number(data.price),
+      thumbnail,
+      cover,
+    })
+  }
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -20,55 +36,74 @@ export default function Products() {
 
             <FormTextInput control={control} name="name" label="Nome" />
             <FormTextInput control={control} name="price" label="Preço" />
-            <FormTextInput
+            <FormTextArea
               control={control}
               name="description"
               label="Descrição"
+              maxLength={200}
             />
           </div>
 
           <div className="flex gap-5">
-            <div className="flex flex-col items-center justify-center">
-              <UploadButton
-                endpoint="imageUploader"
-                onClientUploadComplete={(res) => {
-                  // Do something with the response
-                  console.log('Files: ', res)
-                  alert('Upload Completed')
-                }}
-                onUploadError={(error: Error) => {
-                  // Do something with the error.
-                  alert(`ERROR! ${error.message}`)
-                }}
-                className="w-32 h-32 bg-gray-light rounded-md"
+            {thumbnail ? (
+              <Image
+                src={thumbnail}
+                alt="Thumbnail"
+                width={32}
+                height={32}
+                className="w-32 h-32 rounded-md"
+                quality={100}
               />
+            ) : (
+              <div className="flex flex-col items-center justify-center">
+                <UploadButton
+                  endpoint="imageUploader"
+                  onClientUploadComplete={(res) => {
+                    console.log('Files: ', res)
+                    setThumbnail(res[0].url)
+                  }}
+                  onUploadError={(error: Error) => {
+                    alert(`ERROR! ${error.message}`)
+                  }}
+                  className="w-32 h-32 bg-gray-light rounded-md"
+                />
 
-              <p>Thumbnail</p>
-            </div>
+                <p>Thumbnail</p>
+              </div>
+            )}
 
-            <div className="flex flex-col items-center justify-center">
-              <UploadButton
-                endpoint="imageUploader"
-                onClientUploadComplete={(res) => {
-                  // Do something with the response
-                  console.log('Files: ', res)
-                  alert('Upload Completed')
-                }}
-                onUploadError={(error: Error) => {
-                  // Do something with the error.
-                  alert(`ERROR! ${error.message}`)
-                }}
-                className="w-32 h-32 bg-gray-light rounded-md"
+            {cover ? (
+              <Image
+                src={cover}
+                alt="Cover"
+                width={32}
+                height={32}
+                className="w-32 h-32 rounded-md"
               />
+            ) : (
+              <div className="flex flex-col items-center justify-center">
+                <UploadButton
+                  endpoint="imageUploader"
+                  onClientUploadComplete={(res) => {
+                    console.log('Files: ', res)
+                    setCover(res[0].url)
+                  }}
+                  onUploadError={(error: Error) => {
+                    alert(`ERROR! ${error.message}`)
+                  }}
+                  className="w-32 h-32 bg-gray-light rounded-md"
+                />
 
-              <p>Cover</p>
-            </div>
+                <p>Cover</p>
+              </div>
+            )}
           </div>
         </div>
 
         <button
           type="submit"
           className="bg-gray-light text-white rounded-md p-2 w-1/2 self-center"
+          onClick={handleSubmit(onSubmit)}
         >
           Salvar
         </button>
