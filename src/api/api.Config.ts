@@ -1,4 +1,5 @@
 import { Order } from '@/schemas/orderSchema'
+import { ProductSchema } from '@/schemas/productSchema'
 import axios from 'axios'
 
 const api = axios.create({
@@ -11,4 +12,8 @@ export function getOrders() {
 
 export function createProduct(data: unknown) {
   return api.post('/product', data)
+}
+
+export function getProducts() {
+  return api.get<ProductSchema[]>('/product')
 }

@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-export default function Products() {
+export default function CreateProduct() {
   const [thumbnail, setThumbnail] = useState('')
   const [cover, setCover] = useState('')
 
@@ -25,7 +25,7 @@ export default function Products() {
           name: data.name,
           price: Number(data.price),
           description: data.description,
-          ingredients: data.ingredients,
+          ingredients: data.ingredients ?? '',
           thumbnail,
           cover,
         },
@@ -33,15 +33,15 @@ export default function Products() {
     }
 
     mutate(productData)
-
-    if (isSuccess) {
-      reset()
-      setThumbnail('')
-      setCover('')
-
-      alert('Produto criado com sucesso!')
-    }
   }
+
+  // if (isSuccess) {
+  //   reset()
+  //   setThumbnail('')
+  //   setCover('')
+
+  //   alert('Produto criado com sucesso!')
+  // }
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -130,6 +130,7 @@ export default function Products() {
           className="bg-gray-light text-white rounded-md p-2 w-1/2 self-center"
           onClick={handleSubmit(onSubmit)}
           disabled={isPending}
+          // loading={isPending}
         >
           Salvar
         </button>
