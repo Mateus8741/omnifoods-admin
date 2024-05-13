@@ -1,14 +1,12 @@
 /* eslint-disable prettier/prettier */
 'use client'
 
-import { colors } from '@/theme/colors'
 import {
-    CreditCard,
-    Home,
-    List,
-    LogOut,
-    Settings,
-    ShoppingBag,
+  CirclePlus,
+  CreditCard,
+  List,
+  MenuIcon,
+  Settings,
 } from 'lucide-react'
 import { MenuItems } from './menuItems'
 import { UserItem } from './userItem'
@@ -20,23 +18,28 @@ export function Sidebar() {
       items: [
         {
           link: '/',
-          icon: <Home />,
-          text: 'Home',
-        },
-        {
-          link: '/AddProducts',
-          icon: <ShoppingBag />,
-          text: 'Adicionar Produtos',
-        },
-        {
-          link: '/ListProducts',
-          icon: <List />,
-          text: 'Produtos Adicionados',
+          icon: <MenuIcon />,
+          text: 'Comandas',
         },
         {
           link: '/Billing',
           icon: <CreditCard />,
           text: 'Pagamentos',
+        },
+      ],
+    },
+    {
+      group: 'Produtos',
+      items: [
+        {
+          link: '/ListProducts',
+          icon: <List />,
+          text: 'Todos os Produtos',
+        },
+        {
+          link: '/AddProducts',
+          icon: <CirclePlus />,
+          text: 'Adicionar Produtos',
         },
       ],
     },
@@ -62,16 +65,6 @@ export function Sidebar() {
         {menuList.map((group, index) => (
           <MenuItems key={index} group={group} />
         ))}
-      </div>
-
-      <div>
-        <button
-          className="flex gap-2 items-center text-red-danger bg-red-danger/20 p-2 rounded-md hover:bg-red-danger/10"
-          onClick={() => console.log('Logout')}
-        >
-          <LogOut color={colors.red.danger} />
-          Logout
-        </button>
       </div>
     </aside>
   )
