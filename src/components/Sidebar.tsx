@@ -1,13 +1,6 @@
 /* eslint-disable prettier/prettier */
 'use client'
 
-import {
-  CirclePlus,
-  CreditCard,
-  List,
-  MenuIcon,
-  Settings,
-} from 'lucide-react'
 import { MenuItems } from './menuItems'
 import { UserItem } from './userItem'
 
@@ -18,12 +11,12 @@ export function Sidebar() {
       items: [
         {
           link: '/',
-          icon: <MenuIcon />,
+          icon: 'Menu',
           text: 'Comandas',
         },
         {
           link: '/Billing',
-          icon: <CreditCard />,
+          icon: 'CreditCard',
           text: 'Pagamentos',
         },
       ],
@@ -33,12 +26,12 @@ export function Sidebar() {
       items: [
         {
           link: '/ListProducts',
-          icon: <List />,
+          icon: 'List',
           text: 'Todos os Produtos',
         },
         {
           link: '/AddProducts',
-          icon: <CirclePlus />,
+          icon: 'CirclePlus',
           text: 'Adicionar Produtos',
         },
       ],
@@ -48,7 +41,7 @@ export function Sidebar() {
       items: [
         {
           link: '/Settings',
-          icon: <Settings />,
+          icon: 'Settings',
           text: 'General Settings',
         },
       ],
@@ -56,8 +49,8 @@ export function Sidebar() {
   ]
 
   return (
-    <aside className="flex flex-col gap-3 w-[16rem] min-h-screen p-4 shadow-lg shadow-bg/30">
-      <div>
+    <aside className="flex flex-col w-[16rem] max-h-screen p-4 shadow-lg shadow-bg/30">
+      <div className='mb-7'>
         <UserItem />
       </div>
 

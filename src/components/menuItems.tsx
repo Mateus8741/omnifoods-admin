@@ -1,12 +1,14 @@
+import { colors } from '@/theme/colors'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Icons } from './icons'
 
 type MenuItem = {
   group: {
     group: string
     items: {
       link: string
-      icon: React.ReactNode
+      icon: unknown
       text: string
     }[]
   }
@@ -23,11 +25,15 @@ export function MenuItems({ group }: MenuItem) {
           <Link
             key={index}
             href={item.link}
-            className={`flex gap-2 p-2 rounded-md items-center text-gray-subtitle hover:bg-gray-1000/10 ${
-              pathName === item.link && 'bg-gray-1000/10'
+            className={`flex gap-2 p-2 rounded-md items-center font-semibold text-red-dark hover:bg-gray-1000/10 ${
+              pathName === item.link && 'bg-red-light'
             }`}
           >
-            {item.icon}
+            <Icons
+              name={item.icon as never}
+              size={24}
+              color={pathName === item.link ? colors.red.line : 'gray'}
+            />
             {item.text}
           </Link>
         ))}
