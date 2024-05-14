@@ -32,7 +32,9 @@ export function MenuItems({ group }: MenuItem) {
             <Icons
               name={item.icon as never}
               size={24}
-              color={pathName === item.link ? colors.red.line : 'gray'}
+              color={
+                pathName === item.link ? colors.red.line : colors.gray.icons
+              }
             />
             {item.text}
           </Link>
