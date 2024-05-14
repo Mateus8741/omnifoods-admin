@@ -49,7 +49,7 @@ export function Sidebar() {
   ]
 
   return (
-    <aside className="flex flex-col w-[16rem] max-h-screen p-4 shadow-lg shadow-bg/30">
+    <aside className="flex flex-col w-[16rem] max-h-screen p-4 bg-gray-aside border border-gray-1000/10">
       <div className='mb-7'>
         <UserItem />
       </div>
