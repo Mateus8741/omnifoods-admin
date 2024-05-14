@@ -4,7 +4,7 @@ import { formatDate } from '@/utils/formateDate'
 export function CardOrders(order: Order) {
   return (
     <div className="flex flex-col items-center justify-center w-full p-4">
-      <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg border border-bg mt-4">
+      <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg border border-bg">
         <div className="flex flex-row items-center justify-between w-full">
           <h2 className="text-xl text-gray-1000">
             Mesa:{' '}
