@@ -6,6 +6,7 @@ export const colors = {
 
   gray: {
     bg: '#F0EEEE',
+    aside: '#F6F8F9',
     icons: '#84919A',
     subtitle: '#7F7F81',
     light: '#434345',
