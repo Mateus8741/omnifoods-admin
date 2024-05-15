@@ -9,7 +9,7 @@ const STATUS = tv({
       pending: {
         container: 'bg-yellow-pending',
       },
-      canceled: {
+      cancelled: {
         container: 'bg-red-canceled',
       },
       completed: {
@@ -24,7 +24,7 @@ const STATUS = tv({
 })
 
 type StatusProps = VariantProps<typeof STATUS> & {
-  statusType: 'pending' | 'canceled' | 'completed'
+  statusType: 'pending' | 'cancelled' | 'completed'
 }
 
 export function Status({ statusType = 'pending' }: StatusProps) {
@@ -34,7 +34,7 @@ export function Status({ statusType = 'pending' }: StatusProps) {
     <div className={container()}>
       <p className="text-black font-bold text-xs">
         {statusType === 'pending' && 'Em preparo'}
-        {statusType === 'canceled' && 'Cancelados'}
+        {statusType === 'cancelled' && 'Cancelados'}
         {statusType === 'completed' && 'Prontos'}
       </p>
     </div>
