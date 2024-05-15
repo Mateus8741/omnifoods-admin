@@ -61,7 +61,11 @@ export default function Home() {
       acc[order.status].push(order)
       return acc
     },
-    {},
+    {
+      PENDING: [],
+      CANCELLED: [],
+      COMPLETED: [],
+    },
   )
 
   return (
