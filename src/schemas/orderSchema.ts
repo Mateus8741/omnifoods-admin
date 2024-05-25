@@ -10,6 +10,7 @@ export interface Order {
   id?: string
   tableNumber: number
   changeToOrder?: string
+  status: 'PENDING' | 'CANCELLED' | 'COMPLETED'
   createdAt?: string
   productOrders: ProductOrder[]
 }

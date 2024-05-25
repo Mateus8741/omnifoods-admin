@@ -3,38 +3,36 @@ import { formatDate } from '@/utils/formateDate'
 
 export function CardOrders(order: Order) {
   return (
-    <div className="flex flex-col items-center justify-center w-full p-4">
-      <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg border border-bg mt-4">
-        <div className="flex flex-row items-center justify-between w-full">
-          <h2 className="text-xl text-gray-1000">
-            Mesa:{' '}
-            <span className="font-bold uppercase">{order.tableNumber}</span>
+    <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-2xl mt-4">
+      <div className="flex flex-col w-full items-center justify-center p-4">
+        <div className="flex flex-row w-full items-center justify-between">
+          <h2 className="text-sm text-gray-1000 font-bold uppercase">
+            Mesa: {order.tableNumber}
           </h2>
 
-          <p className="text-gray-1000">
-            Hora do pedido:{' '}
-            <span className="font-bold uppercase">
-              {formatDate(order.createdAt ?? '')}
-            </span>
+          <p className="text-sm text-gray-1000 font-bold uppercas">
+            Horário: {formatDate(order.createdAt ?? '')}
           </p>
         </div>
 
         {order.productOrders.map((product) => (
           <div
             key={product.id}
-            className="flex flex-col items-center justify-center w-full p-4 rounded-lg border border-bg mt-4"
+            className="flex flex-row bg-gray-bg items-center gap-4 w-full p-4 rounded-lg mt-4"
           >
-            <h3 className="text-lg font-bold text-gray-1000">
+            <p className="text-lg font-bold text-gray-1000">
+              {product.quantity}x
+            </p>
+
+            <p className="text-lg text-gray-1000 font-bold">
               {product.productName}
-            </h3>
-            <p className="text-gray-1000">Quantidade: {product.quantity}</p>
+            </p>
           </div>
         ))}
 
         {order.changeToOrder && (
-          <p className="text-gray-1000 mt-3">
-            Observações:{' '}
-            <span className="font-bold uppercase">{order.changeToOrder}</span>
+          <p className="text-gray-1000 font-bold mt-3 self-start">
+            Obs: <span className="font-semibold">{order.changeToOrder}</span>
           </p>
         )}
       </div>

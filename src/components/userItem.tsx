@@ -2,17 +2,17 @@ import Image from 'next/image'
 
 export function UserItem() {
   return (
-    <div className="flex items-center gap-3 p-2 border border-bg/20 rounded-lg shadow-md">
+    <div className="flex items-center gap-3">
       <Image
         src="/logo.svg"
         alt="user"
-        width={40}
-        height={40}
-        className="w-20 h-20 rounded-full ring-2 ring-white"
+        width={31}
+        height={31}
+        className="w-8 h-8 rounded-full ring-2 ring-white"
       />
       <div>
-        <h2 className="text-lg text-gray-1000">Omni Foods</h2>
-        <p className="text-gray-subtitle text-sm">Restaurante</p>
+        <h2 className="text-lg font-bold text-gray-1000">Omni Foods</h2>
+        <p className="text-gray-subtitle text-sm">Comanda principal</p>
       </div>
     </div>
   )
