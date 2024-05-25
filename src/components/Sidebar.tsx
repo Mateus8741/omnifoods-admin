@@ -7,17 +7,17 @@ import { UserItem } from './userItem'
 export function Sidebar() {
   const menuList = [
     {
-      group: 'Geral',
+      group: 'Comandas',
       items: [
         {
           link: '/',
           icon: 'Menu',
-          text: 'Comandas',
+          text: 'Recepção',
         },
         {
-          link: '/Billing',
-          icon: 'CreditCard',
-          text: 'Pagamentos',
+          link: '/Kitchen',
+          icon: 'CookingPot',
+          text: 'Cozinha',
         },
       ],
     },
