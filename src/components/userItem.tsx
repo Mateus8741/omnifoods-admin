@@ -8,7 +8,7 @@ export function UserItem() {
         alt="user"
         width={31}
         height={31}
-        className="w-8 h-8 rounded-full ring-2 ring-white"
+        className="w-16 h-16 rounded-full ring-2 ring-white"
       />
       <div>
         <h2 className="text-lg font-bold text-gray-1000">Omni Foods</h2>
