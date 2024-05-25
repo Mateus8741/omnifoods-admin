@@ -27,7 +27,7 @@ export function ProductCard({ title, details }: ProductSchema) {
 
             <div>
               {detail.ingredients && (
-                <div className="flex flex-col gap-2 bg-gray-bg px-3 rounded-md">
+                <div className="flex flex-col gap-2 bg-gray-bg p-3 rounded-md">
                   <p className="text-xl font-bold">Ingredientes</p>
                   <p>{detail.ingredients}</p>
                 </div>
