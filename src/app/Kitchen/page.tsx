@@ -7,7 +7,9 @@ import { Status } from '@/components/status'
 export default function Billing() {
   const { data } = useListAllOrders()
 
-  const pendingOrders = data?.data.filter((order) => order.status === 'PENDING')
+  const pendingOrders = data?.data.filter(
+    (order) => order.status === 'PREPARING',
+  )
 
   return (
     <div className="">
@@ -15,7 +17,7 @@ export default function Billing() {
 
       <div className="grid grid-cols-3 gap-4 mt-4">
         <div className="flex flex-col px-2 py-5 bg-gray-bg rounded-3xl">
-          <Status statusType="pending" />
+          <Status statusType="preparing" />
           {pendingOrders &&
             pendingOrders.map((order) => (
               <CardOrders key={order.id} {...order} />
