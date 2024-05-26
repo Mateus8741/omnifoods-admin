@@ -36,16 +36,16 @@ export function Sidebar() {
         },
       ],
     },
-    {
-      group: 'Settings',
-      items: [
-        {
-          link: '/Settings',
-          icon: 'Settings',
-          text: 'General Settings',
-        },
-      ],
-    },
+    // {
+    //   group: 'Settings',
+    //   items: [
+    //     {
+    //       link: '/Settings',
+    //       icon: 'Settings',
+    //       text: 'General Settings',
+    //     },
+    //   ],
+    // },
   ]
 
   return (
