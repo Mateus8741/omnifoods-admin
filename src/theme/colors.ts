@@ -26,6 +26,7 @@ export const colors = {
     line: '#B70F0F',
     dark: '#541818',
     danger: '#FF3D00',
+    pending: '#E79568',
     canceled: '#E76868',
     light: '#F2E2E2',
   },

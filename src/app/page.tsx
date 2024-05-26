@@ -18,7 +18,7 @@ export default function Home() {
     },
     {
       PENDING: [],
-      CANCELLED: [],
+      PREPARING: [],
       COMPLETED: [],
     },
   )
@@ -35,7 +35,7 @@ export default function Home() {
           >
             <Status
               statusType={
-                status.toLowerCase() as 'pending' | 'cancelled' | 'completed'
+                status.toLowerCase() as 'pending' | 'preparing' | 'completed'
               }
             />
             {(orders as Order[]).map((order: Order) => (
