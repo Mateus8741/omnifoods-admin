@@ -17,3 +17,13 @@ export function createProduct(data: unknown) {
 export function getProducts() {
   return api.get<ProductSchema[]>('/product')
 }
+
+export function updateStatus(id: string) {
+  return api.put(`/order/${id}/status`, {
+    status: 'PREPARING',
+  })
+}
+
+export function deleteOrder(id: string) {
+  return api.delete(`/order/${id}`)
+}

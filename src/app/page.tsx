@@ -33,11 +33,14 @@ export default function Home() {
             key={status}
             className="flex flex-col px-3 py-5 bg-gray-bg rounded-3xl"
           >
-            <Status
-              statusType={
-                status.toLowerCase() as 'pending' | 'preparing' | 'completed'
-              }
-            />
+            <div className="flex justify-between items-center">
+              <Status
+                statusType={
+                  status.toLowerCase() as 'pending' | 'preparing' | 'completed'
+                }
+              />
+            </div>
+
             {(orders as Order[]).map((order: Order) => (
               <CardOrders key={order.tableNumber} {...order} />
             ))}
