@@ -30,4 +30,23 @@ export const colors = {
     canceled: '#E76868',
     light: '#F2E2E2',
   },
+
+  cards: {
+    total: {
+      container: '#FFE2E5',
+      icon: '#FA5A7D',
+    },
+    totalRequests: {
+      container: '#FFF4DE',
+      icon: '#FF947A',
+    },
+    salesPerMonth: {
+      container: '#DCFCE7',
+      icon: '#3cd856',
+    },
+    salesPerDay: {
+      container: '#F3E8FF',
+      icon: '#BF83FF',
+    },
+  },
 }

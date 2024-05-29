@@ -10,20 +10,20 @@ const $cards = tv({
   variants: {
     cardType: {
       total: {
-        container: 'bg-[#FFE2E5]',
-        icon: 'bg-[#FA5A7D]',
+        container: 'bg-cards-total-container',
+        icon: 'bg-cards-total-icon',
       },
       totalRequests: {
-        container: 'bg-[#FFF4DE]',
-        icon: 'bg-[#FF947A]',
+        container: 'bg-cards-totalRequests-container',
+        icon: 'bg-cards-totalRequests-icon',
       },
       salesPerMonth: {
-        container: 'bg-[#DCFCE7]',
-        icon: 'bg-[#3cd856]',
+        container: 'bg-cards-salesPerMonth-container',
+        icon: 'bg-cards-salesPerMonth-icon',
       },
       salesPerDay: {
-        container: 'bg-[#F3E8FF]',
-        icon: 'bg-[#BF83FF]',
+        container: 'bg-cards-salesPerDay-container',
+        icon: 'bg-cards-salesPerDay-icon',
       },
     },
   },
