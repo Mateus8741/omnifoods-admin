@@ -1,3 +1,4 @@
+import { ProductSales } from '@/components/topProducts'
 import { Order } from '@/schemas/orderSchema'
 
 function calculateTotalValue(orders: Order[]): number {
@@ -41,11 +42,34 @@ function calculateSalesPerDay(orders: Order[]): number {
   }, 0)
 }
 
+function aggregateProductSales(orders: Order[]): ProductSales[] {
+  const productSalesMap: { [productName: string]: ProductSales } = {}
+
+  orders.forEach((order) => {
+    order.productOrders.forEach((productOrder) => {
+      if (!productSalesMap[productOrder.productName]) {
+        productSalesMap[productOrder.productName] = {
+          productName: productOrder.productName,
+          quantity: 0,
+          totalSales: 0,
+        }
+      }
+      productSalesMap[productOrder.productName].quantity +=
+        productOrder.quantity
+      productSalesMap[productOrder.productName].totalSales +=
+        productOrder.productPrice * productOrder.quantity
+    })
+  })
+
+  return Object.values(productSalesMap).sort((a, b) => b.quantity - a.quantity)
+}
+
 export function getDashboardValues(orders: Order[]) {
   return {
     totalValue: calculateTotalValue(orders),
     totalRequests: calculateTotalRequests(orders),
     salesPerMonth: calculateSalesPerMonth(orders),
     salesPerDay: calculateSalesPerDay(orders),
+    topProducts: aggregateProductSales(orders),
   }
 }
