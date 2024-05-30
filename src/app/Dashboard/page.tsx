@@ -51,6 +51,7 @@ export default function Dashboard() {
                   {
                     text: `${Math.round(popularityPercentage)}%`,
                     border: [true, true, true, true],
+                    style: 'tableData',
                   },
                   {
                     text: FormatMoney(product.totalSales),
