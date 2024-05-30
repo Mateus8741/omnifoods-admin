@@ -64,6 +64,45 @@ function aggregateProductSales(orders: Order[]): ProductSales[] {
   return Object.values(productSalesMap).sort((a, b) => b.quantity - a.quantity)
 }
 
+function calculateAnnualSales(orders: Order[]) {
+  const currentYear = new Date().getFullYear()
+  const annualSales = orders.reduce((acc, order) => {
+    const orderYear = order.createdAt
+      ? new Date(order.createdAt).getFullYear()
+      : 0
+    if (orderYear === currentYear) {
+      return (
+        acc +
+        order.productOrders.reduce((orderAcc, productOrder) => {
+          return orderAcc + productOrder.productPrice * productOrder.quantity
+        }, 0)
+      )
+    }
+    return acc
+  }, 0)
+  return annualSales
+}
+
+function calculateMonthlySales(orders: Order[]) {
+  const currentMonth = new Date().getMonth()
+  const monthlySales = orders.reduce((acc, order) => {
+    const orderMonth = order.createdAt
+      ? new Date(order.createdAt).getMonth()
+      : undefined
+    if (orderMonth === currentMonth) {
+      return (
+        acc +
+        order.productOrders.reduce((orderAcc, productOrder) => {
+          return orderAcc + productOrder.productPrice * productOrder.quantity
+        }, 0)
+      )
+    }
+    return acc
+  }, 0)
+
+  return monthlySales as number
+}
+
 export function getDashboardValues(orders: Order[]) {
   return {
     totalValue: calculateTotalValue(orders),
@@ -71,5 +110,7 @@ export function getDashboardValues(orders: Order[]) {
     salesPerMonth: calculateSalesPerMonth(orders),
     salesPerDay: calculateSalesPerDay(orders),
     topProducts: aggregateProductSales(orders),
+    annualSales: calculateAnnualSales(orders),
+    monthlySales: calculateMonthlySales(orders),
   }
 }

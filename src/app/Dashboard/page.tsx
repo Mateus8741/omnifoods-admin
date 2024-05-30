@@ -4,8 +4,8 @@ import { useListAllOrders } from '@/api/useCases/useListAllOrders'
 import { DashboardCard } from '@/components/dashboardCard'
 import { Icons } from '@/components/icons'
 import { TopProducts } from '@/components/topProducts'
-import { getDashboardValues } from '@/utils/cardValues'
-import { COLORS } from '@/utils/colors'
+import { getDashboardValues } from '@/hooks/cardValues'
+import { useExportData } from '@/hooks/exportPDF'
 import { FormatMoney } from '@/utils/formatMoney'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
@@ -15,65 +15,28 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 export default function Dashboard() {
   const { data } = useListAllOrders()
 
-  const { salesPerDay, salesPerMonth, totalRequests, totalValue, topProducts } =
-    getDashboardValues(data?.data || [])
+  const {
+    salesPerDay,
+    salesPerMonth,
+    totalRequests,
+    totalValue,
+    topProducts,
+    annualSales,
+    monthlySales,
+  } = getDashboardValues(data?.data || [])
 
-  const { fixedColors } = COLORS()
+  const { exportData } = useExportData()
 
-  function exportData() {
-    const docDefinition = {
-      content: [
-        { text: 'Relatório de Vendas', style: 'header' },
-        {
-          text: `Total de Vendas: ${FormatMoney(totalValue)}`,
-          style: 'subheader',
-        },
-        { text: `Total de Pedidos: ${totalRequests}`, style: 'subheader' },
-        { text: `Vendas do Mês: ${salesPerMonth}`, style: 'subheader' },
-        { text: `Vendas do Dia: ${salesPerDay}`, style: 'subheader' },
-        { text: 'Produtos Mais Vendidos', style: 'header' },
-        {
-          table: {
-            headerRows: 1,
-            widths: ['*', '*', '*', '*'],
-            body: [
-              ['#', 'Nome', 'Popularidade', 'Vendas'],
-              ...topProducts.map((product, index) => {
-                const popularityPercentage =
-                  (product.quantity /
-                    Math.max(...topProducts.map((p) => p.quantity))) *
-                  100
-                const color = fixedColors[index % fixedColors.length]
-
-                return [
-                  { text: `${index + 1}`, style: 'tableData' },
-                  { text: product.productName, style: 'tableData' },
-                  {
-                    text: `${Math.round(popularityPercentage)}%`,
-                    border: [true, true, true, true],
-                    style: 'tableData',
-                  },
-                  {
-                    text: FormatMoney(product.totalSales),
-                    border: [true, true, true, true],
-                    style: { color },
-                  },
-                ]
-              }),
-            ],
-          },
-        },
-      ],
-      styles: {
-        header: { fontSize: 18, bold: true, margin: [0, 10, 0, 10] },
-        subheader: { fontSize: 12, margin: [0, 10, 0, 10] },
-        tableData: { margin: [5, 5, 5, 5] },
-      },
-    }
-
-    pdfMake
-      .createPdf(docDefinition as unknown as never)
-      .download('relatorio-de-vendas.pdf')
+  function handleExportData() {
+    exportData({
+      totalValue,
+      totalRequests,
+      salesPerMonth,
+      salesPerDay,
+      annualSales,
+      monthlySales,
+      topProducts,
+    })
   }
 
   return (
@@ -92,12 +55,12 @@ export default function Dashboard() {
 
             <button
               className="flex items-center gap-2 px-4 py-px rounded-lg border-2 border-gray-1000/20 text-gray-1000/60"
-              onClick={exportData}
+              onClick={handleExportData}
             >
               <div className="flex items-center gap-2">
                 <Icons name="Upload" size={15} color="#000" />
 
-                <p className="text-sm font-normal text-black">Export</p>
+                <p className="text-sm font-normal text-black">Exportar</p>
               </div>
             </button>
           </div>
