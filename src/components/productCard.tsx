@@ -3,7 +3,7 @@ import { FormatMoney } from '@/utils/formatMoney'
 
 export function ProductCard({ title, details }: ProductSchema) {
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-4 py-4">
       <h2 className="text-5xl font-bold">{title}</h2>
 
       <div className="flex flex-wrap gap-4 bg-gray-bg p-4 rounded-md w-fit">
@@ -29,7 +29,9 @@ export function ProductCard({ title, details }: ProductSchema) {
               {detail.ingredients && (
                 <div className="flex flex-col gap-2 bg-gray-bg p-3 rounded-md">
                   <p className="text-xl font-bold">Ingredientes</p>
-                  <p>{detail.ingredients}</p>
+                  <p className="text-wrap break-words w-full">
+                    {detail.ingredients}
+                  </p>
                 </div>
               )}
 
