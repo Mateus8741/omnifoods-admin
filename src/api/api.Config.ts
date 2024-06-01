@@ -24,6 +24,12 @@ export function updateStatus(id: string) {
   })
 }
 
+export function completeStatus(id: string) {
+  return api.put(`/order/${id}/status`, {
+    status: 'COMPLETED',
+  })
+}
+
 export function deleteOrder(id: string) {
   return api.delete(`/order/${id}`)
 }

@@ -1,5 +1,6 @@
 import { useDeleteOrder } from '@/api/useCases/useDeleteOrder'
 import { useStatusUpdate } from '@/api/useCases/useUpdateStatus'
+import { useStatusComplete } from '@/api/useCases/useUpdateStatusComplete'
 import { Order } from '@/schemas/orderSchema'
 import { formatDate } from '@/utils/formateDate'
 import { Icons } from './icons'
@@ -7,9 +8,14 @@ import { Icons } from './icons'
 export function CardOrders(order: Order) {
   const { mutate } = useStatusUpdate()
   const { mutate: mutateDelete } = useDeleteOrder()
+  const { complete } = useStatusComplete()
 
   function handleAcceptOrder() {
     mutate(order.id ?? '')
+  }
+
+  function handleCompleteOrder() {
+    complete(order.id ?? '')
   }
 
   return (
@@ -78,6 +84,13 @@ export function CardOrders(order: Order) {
             onClick={() => mutateDelete(order.id ?? '')}
           >
             Cancelar
+          </button>
+
+          <button
+            className="bg-green-success text-white rounded-md px-4 py-2 font-semibold hover:bg-green-completed transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+            onClick={handleCompleteOrder}
+          >
+            Pronto
           </button>
         </div>
       )}
