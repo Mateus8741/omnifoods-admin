@@ -1,16 +1,18 @@
-/* eslint-disable prettier/prettier */
-import { useMutation } from '@tanstack/react-query';
-import { updateStatus } from '../api.Config';
+import { useMutation } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
+import { updateStatus } from '../api.Config'
 
 export function useStatusUpdate() {
   const { mutate, isSuccess, isPending } = useMutation({
-    mutationFn: async (id: string) =>
-      updateStatus(id),
+    mutationFn: async (id: string) => updateStatus(id),
     onMutate: async () => {
-      console.log('updating status...');
+      toast('Atualizando status...', { type: 'info' })
     },
     onSuccess: () => {
-      alert('Status updated!');
+      toast('Status atualizado!', { type: 'success' })
+    },
+    onError: () => {
+      toast('Erro ao atualizar status!', { type: 'error' })
     },
   })
 
