@@ -1,6 +1,7 @@
 'use client'
 
 import { api } from '@/api/api.Config'
+import { LoginTop } from '@/components/loginTop'
 import { useUserStorage } from '@/contexts/useUser'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useLayoutEffect, useState } from 'react'
@@ -25,6 +26,8 @@ export function Provider({ children }: { children: React.ReactNode }) {
   }, [user?.token])
 
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      {!user ? <LoginTop /> : children}
+    </QueryClientProvider>
   )
 }

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   applicationName: 'Comanda Eletronica',
   keywords: ['comanda', 'eletronica'],
-  themeColor: '#121214',
+  themeColor: '#131316',
 }
 
 export default function RootLayout({

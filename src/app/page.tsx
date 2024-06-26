@@ -2,14 +2,11 @@
 
 import { useListAllOrders } from '@/api/useCases/useListAllOrders'
 import { CardOrders } from '@/components/cardOrders'
-import { LoginTop } from '@/components/loginTop'
 import { Status } from '@/components/status'
-import { useUserStorage } from '@/contexts/useUser'
 import { Order } from '@/schemas/orderSchema'
 
 export default function Home() {
   const { data } = useListAllOrders()
-  const { user } = useUserStorage()
 
   const ordersByStatus = data?.data.reduce(
     (acc: { [key: string]: Order[] }, order) => {
@@ -28,12 +25,6 @@ export default function Home() {
 
   return (
     <>
-      {!user && (
-        <div className="flex justify-center items-center w-full h-full">
-          <LoginTop />
-        </div>
-      )}
-
       <div className="w-full h-full p-4">
         <h1 className="text-2xl font-bold text-gray-1000">Pedidos</h1>
 
