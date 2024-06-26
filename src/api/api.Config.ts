@@ -1,10 +1,15 @@
+import { LoginSchema } from '@/schemas/loginSchema'
 import { Order } from '@/schemas/orderSchema'
 import { ProductSchema } from '@/schemas/productSchema'
 import axios from 'axios'
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: 'https://omnifoods-back.onrender.com',
 })
+
+export function login(data: LoginSchema) {
+  return api.post('/auth/login', data)
+}
 
 export function getOrders() {
   return api.get<Order[]>('/list-all-orders')

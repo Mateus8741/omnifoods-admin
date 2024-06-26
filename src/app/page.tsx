@@ -24,29 +24,34 @@ export default function Home() {
   )
 
   return (
-    <div className="w-full h-full p-4">
-      <h1 className="text-2xl font-bold text-gray-1000">Pedidos</h1>
+    <>
+      <div className="w-full h-full p-4">
+        <h1 className="text-2xl font-bold text-gray-1000">Pedidos</h1>
 
-      <div className="grid grid-cols-3 gap-4 mt-4">
-        {Object.entries(ordersByStatus || {}).map(([status, orders]) => (
-          <div
-            key={status}
-            className="flex flex-col px-3 py-5 bg-gray-bg rounded-3xl"
-          >
-            <div className="flex justify-between items-center">
-              <Status
-                statusType={
-                  status.toLowerCase() as 'pending' | 'preparing' | 'completed'
-                }
-              />
+        <div className="grid grid-cols-3 gap-4 mt-4">
+          {Object.entries(ordersByStatus || {}).map(([status, orders]) => (
+            <div
+              key={status}
+              className="flex flex-col px-3 py-5 bg-gray-bg rounded-3xl"
+            >
+              <div className="flex justify-between items-center">
+                <Status
+                  statusType={
+                    status.toLowerCase() as
+                      | 'pending'
+                      | 'preparing'
+                      | 'completed'
+                  }
+                />
+              </div>
+
+              {(orders as Order[]).map((order: Order) => (
+                <CardOrders key={order.tableNumber} {...order} />
+              ))}
             </div>
-
-            {(orders as Order[]).map((order: Order) => (
-              <CardOrders key={order.tableNumber} {...order} />
-            ))}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -1,10 +1,17 @@
-/* eslint-disable prettier/prettier */
 'use client'
 
+import { useUserStorage } from '@/contexts/useUser'
+import { Icons } from './icons'
 import { MenuItems } from './menuItems'
 import { UserItem } from './userItem'
 
 export function Sidebar() {
+  const { user, removeUser } = useUserStorage()
+
+  function handleLogout() {
+    removeUser()
+  }
+
   const menuList = [
     {
       group: 'Comandas',
@@ -50,7 +57,7 @@ export function Sidebar() {
 
   return (
     <aside className="flex flex-col w-[16rem] max-h-screen p-4 bg-gray-aside border border-gray-1000/10">
-      <div className='mb-7 pb-4 border-b-4 border-gray-1000/10'>
+      <div className="mb-7 pb-4 border-b-4 border-gray-1000/10">
         <UserItem />
       </div>
 
@@ -59,6 +66,16 @@ export function Sidebar() {
           <MenuItems key={index} group={group} />
         ))}
       </div>
+
+      {user && (
+        <button
+          onClick={handleLogout}
+          className="flex items-center w-full px-4 py-2 gap-x-2 text-sm font-medium text-red-600 bg-red-100 rounded-lg hover:bg-red-200"
+        >
+          <Icons name="LogOut" size={24} color="red" />
+          <span>Sair</span>
+        </button>
+      )}
     </aside>
   )
 }

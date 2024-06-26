@@ -12,7 +12,9 @@ const config = {
   ],
   prefix: '',
   theme: {
-    colors,
+    extend: {
+      colors,
+    },
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config
